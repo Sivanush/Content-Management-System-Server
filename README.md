@@ -45,10 +45,7 @@ This backend application serves as the API for the CMS, providing secure CRUD op
    ```bash
    git clone <repository-url>
    ```
-2. **Navigate to the project directory**:
-   ```bash
-   cd cms-server
-   ```
+   
 3. **Install dependencies**:
    ```bash
    npm install

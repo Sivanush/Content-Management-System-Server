@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ArticleController } from './controller/article.controller';
-import { ArticleService } from './service/article.service';
+import { ArticleController } from './article.controller';
+import { ArticleService } from './article.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Article, ArticleModel } from 'src/users/model/article.model';
 

@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/module/users.module';
+import { UsersModule } from './users/users.module';
 import { InjectConnection, MongooseModule } from '@nestjs/mongoose';
-import { JwtModule } from '@nestjs/jwt';
 // import { ArticleService } from './article/service/article.service';
 // import { ArticleController } from './article/controller/article.controller';
 import { ArticleModule } from './article/article.module';
@@ -11,16 +11,12 @@ import { Connection } from 'mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://sivanush:sivanush@ecommerce.vor4n5k.mongodb.net/CMS',
-    ),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
-    }),
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODB_URL),
     UsersModule,
     ArticleModule,
   ],
+
   controllers: [AppController],
   providers: [AppService],
 })

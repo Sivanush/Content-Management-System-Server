@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { createArticleDto } from 'src/users/dto/create-article.dto';
+import { createArticleDto } from 'src/article/dto/create-article.dto';
 import { Article } from 'src/users/model/article.model';
 
 @Injectable()
@@ -10,13 +11,20 @@ export class ArticleService {
     @InjectModel(Article.name) private articleModel: Model<Article>,
   ) {}
 
-  async createArticle(article: createArticleDto): Promise<Article> {
-    const createArticle = new this.articleModel(article);
+  async createArticle(
+    article: createArticleDto,
+    userId: string,
+  ): Promise<Article> {
+    const author = userId;
+    const createArticle = new this.articleModel({
+      ...article,
+      author: author,
+    });
     return await createArticle.save();
   }
 
   async findAll(): Promise<Article[]> {
-    return await this.articleModel.find().exec();
+    return await this.articleModel.find().sort({ date: -1 }).exec();
   }
 
   async findOne(id: string): Promise<Article> {

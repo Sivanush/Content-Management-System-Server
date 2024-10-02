@@ -2,10 +2,11 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateUserDto } from '../dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../model/user.model';
+import { User } from './model/user.model';
 import { Model } from 'mongoose';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -46,7 +47,7 @@ export class UsersService {
     };
   }
 
-  async login(userData: CreateUserDto): Promise<User> {
+  async login(userData: LoginUserDto): Promise<User> {
     const { email, password } = userData;
 
     const user = await this.userModel.findOne({ email });

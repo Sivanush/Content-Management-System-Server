@@ -21,7 +21,7 @@ export class Article extends Document {
   @Prop({ default: Date.now() })
   updatedAt: Date;
 
-  @Prop({ required: true, default: '786786' })
+  @Prop({ required: true, default: 'Unknown' })
   author: string;
 
   @Prop({ default: true })

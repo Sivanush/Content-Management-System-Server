@@ -7,7 +7,7 @@ export class Article extends Document {
   title: string;
 
   @Prop({ required: true })
-  category: string;
+  description: string;
 
   @Prop({ required: true, type: [{ type: Object }] })
   content: {
@@ -21,11 +21,14 @@ export class Article extends Document {
   @Prop({ default: Date.now() })
   updatedAt: Date;
 
-  @Prop({ required: true, default: 'Unknown' })
+  @Prop({ required: true })
   author: string;
 
   @Prop({ default: true })
   isListed: boolean;
+
+  @Prop({ required: true })
+  tags: string[];
 }
 
 export const ArticleModel = SchemaFactory.createForClass(Article);

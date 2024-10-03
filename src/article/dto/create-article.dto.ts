@@ -18,10 +18,14 @@ export class createArticleDto {
 
   @IsString()
   @IsNotEmpty()
-  category: string;
+  description: string;
 
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ContentBlockDto)
   content: ContentBlockDto[];
+
+  @IsArray()
+  @IsNotEmpty()
+  tags: string[];
 }

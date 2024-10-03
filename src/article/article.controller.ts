@@ -23,6 +23,7 @@ export class ArticleController {
     @Body() article: createArticleDto,
     @Req() req: Request,
   ): Promise<Article> {
+    console.log(article);
     return this.articlesService.createArticle(article, req.user?.userId);
   }
 

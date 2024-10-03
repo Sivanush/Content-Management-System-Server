@@ -62,4 +62,13 @@ export class UsersService {
 
     return user;
   }
+
+  async getUserData(userId: string) {
+    console.log(userId);
+    return await this.userModel
+      .findOne({
+        _id: userId,
+      })
+      .select('username email');
+  }
 }
